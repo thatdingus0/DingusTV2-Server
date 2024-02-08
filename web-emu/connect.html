@@ -1,0 +1,235 @@
+<!-- MSN TV 2 Port for modern browsers (by: thatdingus_) THIS MAY NOT BE ACCURATE!! -->
+<!-- File Name: connect.html -->
+<!-- The connect page, doesn't connect to anything. -->
+<!DOCTYPE html>
+<head>
+  <title>MSN Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @font-face {
+      font-family: segoe tv;
+      src: url("LocalAssets/Fonts/SegoeTVRegular.TTF");
+    }
+    #MSNViewer {
+      background-image: url("LocalAssets/bg.jpg");
+      width: 640px; /* 16 * 53.5 (any multiple of 16, maintaining the aspect ratio) */
+      height: 480px; /* 9 * 53.3 (any multiple of 9, maintaining the aspect ratio) */
+    }
+    #content {
+      background-color: transparent;
+      width: 100%;
+      height: 36px;
+    }
+
+    a {
+      color: white;
+      font-family: segoe tv;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    body {
+      margin: 5;
+      overflow: hidden;
+    }
+    #title {
+      font-family: segoe tv;
+      color: #307da3;
+      font-size: 24px;
+      margin-left: 5px;
+    }
+    #subtext {
+      font-family: segoe tv;
+      color: #153d52;
+      font-size: 20px;
+      margin-left: 5px;
+    }
+    hr {
+      color: #ffffff;
+      margin-top: -10px;
+      margin-bottom: -10px;
+      outline: none;
+    }
+    #arrow {
+      max-width: 100px; /* Adjust the width as needed */
+      margin-right: 10px; /* Adjust the margin as needed */
+    }
+    #container {
+      display: flex;
+      align-items: center;
+      margin-top: -30px;
+      margin-bottom: -30px;
+      margin-left: 5px;
+    }
+
+    #bottombar {
+      background-color: #4875b9;
+      width: 640px;
+      height: 67px;
+      outline: 3px solid #929496;
+      border-radius: 10px;
+    }
+    #bottombar-text {
+      font-family: segoe tv;
+      color: white;
+      font-size: 20px;
+      margin-left: 10px;
+    }
+    progress {
+      width: 420px; /* Set the width of the progress bar */
+      height: 20px; /* Set the height of the progress bar */
+      background-color: #a1b9e8;
+      border-radius: 5px;
+    }
+
+    progress[value] {
+      appearance: none; /* Remove the default appearance */
+      border: none; /* Remove the default border */
+      border-radius: 5px;
+      background-color: #a1b9e8; /* Set the background color of the progress bar */
+    }
+
+    progress::-webkit-progress-value {
+      background-color: #adfcb9; /* Set the progress bar color for WebKit browsers */
+      border-radius: 5px; /* Optional: add border radius for a rounded look */
+    }
+
+    progress::-moz-progress-bar {
+      background-color: #adfcb9; /* Set the progress bar color for Mozilla Firefox */
+      border-radius: 5px; /* Optional: add border radius for a rounded look */
+    }
+    #bottombar-progress {
+      display: flex;
+      margin-top: -10px;
+      margin-left: 10px;
+    }
+
+    #cancelbutton {
+      display: flex;
+      margin-top: -25px;
+      margin-left: 550px;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+  <audio src="LocalAssets/connecting.mp3" id="connectingsound" loop></audio>
+  <audio
+    src="http://msntv.celerii.site/modern-browsers/LocalAssets/click.mp3"
+    id="linkSound"
+    hidden
+  ></audio>
+  <div id="MSNViewer">
+    <div id="content">
+      <p id="title">Choose how you'll connect to MSN TV</p>
+      <hr />
+      <p id="subtext">
+        A common way of connecting an Internet & Media Player to the MSN TV
+        Service is by using a phone line. You can also use an existing broadband
+        connection, such as DSL or a cable modem, if you have one.
+      </p>
+      <p id="subtext">Choose how you will connect to the MSN TV Service:</p>
+      <div id="container">
+        <image src="arrow.png"
+          ><a href="#" id="clickableLink"
+            ><b><p id="subtext">I will connect using a phone line</p></b></a
+          ></image
+        >
+      </div>
+      <div id="container">
+        <image src="arrow.png"
+          ><a href="#" id="clickableLink2"
+            ><b
+              ><p id="subtext">
+                I will connect using an existing broadband connection
+              </p></b
+            ></a
+          ></image
+        >
+      </div>
+      <br />
+      <p id="subtext">
+        Note: Throughout registration, you can use the <b>Back</b> key on your
+        keyboard to return to the previous page.
+      </p>
+      <br />
+      <div id="bottombar" hidden>
+        <p id="bottombar-text">Please wait</p>
+        <progress value="0" max="100" id="bottombar-progress"></progress>
+        <a href="javascript:cancel()"><button id="cancelbutton" >Cancel</button></a>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("clickableLink").addEventListener("click", function () {
+        var clickSound = document.getElementById("linkSound");
+        var button = document.getElementById("clickableLink");
+        var button2 = document.getElementById("clickableLink2");
+        var bottombar = document.getElementById("bottombar");
+        var text = document.getElementById("bottombar-text");
+        var connecting = document.getElementById("connectingsound");
+        var progress = document.getElementById("bottombar-progress");
+        button.removeAttribute("href"); // Remove the href attribute
+        button.style.pointerEvents = "none";
+        button2.removeAttribute("href"); // Remove the href attribute
+        button2.style.pointerEvents = "none";
+        clickSound.play();
+
+        setTimeout(function () {
+          connecting.play();
+          bottombar.style.display = "block";
+        }, 350);
+
+        setTimeout(function () {
+          text.innerHTML = "Dialing MSN TV toll-free number.";
+          progress.value = 45;
+        }, 6500);
+
+        setTimeout(function () {
+          text.innerHTML = "Connected to MSN TV Services.";
+          progress.value = 100;
+        }, 17500);
+
+        setTimeout(function () {
+          window.location.href = "/";
+        }, 23200);
+      });
+
+    document.getElementById("clickableLink2").addEventListener("click", function () {
+        var clickSound = document.getElementById("linkSound");
+        var button = document.getElementById("clickableLink");
+        var button2 = document.getElementById("clickableLink2");
+        var bottombar = document.getElementById("bottombar");
+        var text = document.getElementById("bottombar-text");
+        var connecting = document.getElementById("connectingsound");
+        var progress = document.getElementById("bottombar-progress");
+        button2.removeAttribute("href"); // Remove the href attribute
+        button2.style.pointerEvents = "none";
+        button.removeAttribute("href"); // Remove the href attribute
+        button.style.pointerEvents = "none";
+        clickSound.play();
+
+        setTimeout(function () {
+          connecting.play();
+          bottombar.style.display = "block";
+        }, 350);
+
+        setTimeout(function () {
+          text.innerHTML = "Connecting to MSN TV Services.";
+          progress.value = 20;
+        }, 3500);
+
+        setTimeout(function () {
+          text.innerHTML = "Connected to MSN TV Services.";
+          progress.value = 100;
+        }, 7600);
+
+        setTimeout(function () {
+          window.location.href = "home.html";
+        }, 10000);
+      });
+
+      function cancel() {
+        window.location.href='connect.html'
+      }
+  </script>
+</body>

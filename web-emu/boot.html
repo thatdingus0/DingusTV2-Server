@@ -1,0 +1,20 @@
+<!-- MSN TV 2 Port for modern browsers (by: thatdingus_) THIS MAY NOT BE ACCURATE!! -->
+<!-- File Name: boot.html -->
+<!-- Just a page that detects if you did the registration -->
+<!DOCTYPE html>
+<head>
+    <title>boot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script>
+        var didregistration = localStorage.getItem("didregistration");
+        if (didregistration === "1") {
+            window.location.href = 'login.html'
+        } else if (didregistration === null) {
+            window.location.href = 'connect.html'
+        } else {
+            window.location.href = 'connect.html'
+        }
+    </script>
+</body>
