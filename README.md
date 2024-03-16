@@ -4,7 +4,7 @@ Repo of MSNTV 2 stuff
 ~~# What is "web-emu" ?
 Web-Emu is my recreation on the MSN TV 2 ui. \
 It's not accurate, but it's gets the job done.
-If you want to view the web-emu. [Go here](https://msntv.celerii.site/web-emu)~~
+If you want to view the web-emu. Go here~~\
 Removed this because I'm going to focus on the server and stuff.
 
 # How to use the server script. (NOT COMPLETE UNTIL I FIGURE OUT HOW THE SERVICE WORKED!)
