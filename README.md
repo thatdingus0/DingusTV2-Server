@@ -1,6 +1,10 @@
-# DingusTV2 Server
+# MSNTV2-SVR
 This is a attempt to recreate MSN TV 2 servers. \
-Currently I don't own a MSN TV 2 box, so development will be slow. 
+Currently I don't own a MSN TV 2 box, so development will be slow. \
+
+# What does this do?
+It's going to ask like a authentication server for MSN TV 2 boxes so the boxes can be probably used again. \
+and I will probably will add some more functionally to this server whenever I can.
 
 # How to use the server script. 
 Note: The server isn't complete yet. \
