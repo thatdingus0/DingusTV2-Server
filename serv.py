@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 def checkBoxId(BoxId):
     # TODO 
-    print(BoxId)
+    pass
 
 @app.route('/')
 def check():
