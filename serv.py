@@ -2,9 +2,21 @@
 # By thatdingus (https://github.com/thatdingus0)
 # This server isn't perfect yet. It will be fixed whenever I get a MSN TV 2 box.
 
+#TODO:
+# Figure out how to validate BoxId's [Not Done]
+# Figure out what to send back to the MSN TV 2 box. [Not Done]
+# Make a better auth system [Not Done] 
+# Add HTTPS? [Not Done]
+# TO DO last updated: 04/23/2024 @ 17:29
+
+
 from flask import Flask, Response, request
 
 app = Flask(__name__)
+
+def checkBoxId(BoxId):
+    # TODO 
+    print(BoxId)
 
 @app.route('/')
 def check():
@@ -18,20 +30,35 @@ def check():
     NightlyEnabled = request.args.get('NightlyEnabled')
     x = request.args.get('x')
     # Being checking args
-    if phase or purpose or BoxId or WANProvider or version or ConnectorName or domain or NightlyEnabled or x == None:
-        return Response('Error while checking box. One or more args are missing from the string, please fix and try again.')
+    # The first two lines are probably going to stay the same
+    # Any strings with "" is not checked because I don't know what to put here
+    if phase.lower() == "boxcheck":
+        if purpose.lower() == "authorize":
+            print(BoxId)
+            if BoxId == any:
+                if WANProvider == "":
+                    if version == "": 
+                        if ConnectorName == "": 
+                            if domain == "": #
+                                if NightlyEnabled == "":
+                                    if x == "y": 
+                                        return Response("auth=true") # Placeholder string
+                                else:
+                                    return Response("No NightlyEnabled in query string.")
+                            else:
+                                return Response("No domain in query string.")
+                        else:
+                            return Response("No ConnectorName in query string.")   
+                    else:
+                        return Response("No version in query string.")
+                else:
+                    return Response("No WANProvider in query string.")
+            else:
+                return Response("No BoxID in query string.")
+        else:
+            return Response("No purpose in query string.")
     else:
-        if phase.lower() == "boxcheck":
-            if purpose.lower() == "authorize":
-                if BoxId:
-                    if WANProvider: # I don't know what to put here
-                        if version: # I'm not writing all of the versions out.
-                            if ConnectorName: # Again, I don't know what to put here
-                                if domain: # I don't have a MSN TV 2 box, I don't know what to put here.
-                                    if NightlyEnabled == 0 or 1:
-                                        if x == "y":
-                                            # Figure out what to send to the box when it has authorized.
-                                            return Response('Box') # Placeholder
+        return Response("No phase in query string.")
                                           
 
 if __name__ == '__main__':
