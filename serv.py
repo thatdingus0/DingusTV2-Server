@@ -34,7 +34,6 @@ def check():
     # Any strings with "" is not checked because I don't know what to put here
     if phase.lower() == "boxcheck":
         if purpose.lower() == "authorize":
-            print(BoxId)
             if BoxId == any:
                 if WANProvider == "":
                     if version == "": 
