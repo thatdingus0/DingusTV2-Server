@@ -18,11 +18,11 @@ def returnBootstrap():
      return render_template("/service/bootstrap.html")
 
 @app.route('/boxcheck')
-def returnBootstrap():
+def returnBoxCheck():
      return render_template("/service/boxcheck_mock.html")      
 
 @app.route('/usercheck')
-def returnBootstrap():
+def returnUserCheck():
      return render_template("/service/usercheck_mock.html")                                          
 
 if __name__ == '__main__':
