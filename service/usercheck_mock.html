@@ -1,0 +1,129 @@
+<HTML>
+  <HEAD>
+   <title id="title"></title>
+  </HEAD>
+  <body>
+   <iframe id=checkmail style="display:none"></iframe>
+   <script language="javascript">
+    var tvShell = new ActiveXObject("MSNTV.TVShell");
+ function SetServiceList() {
+     var entry;
+     // turns out that there might be two places services can be defined: the persistent service list that stores URLs onto the box,
+	 // and another service list that doesn't. this might be BuiltinServiceList from glancing at the JavaScript.
+	 // BuiltinServiceList - for main MSN TV services
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('home::home');
+     entry.URL = 'msntv://../hard disk/home.html';
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('mail::listmail');
+     entry.URL = 'https://mail-sg2.trusted.msntv.msn.com/apps/mail/listmail.aspx';
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('chat::home');
+     entry.URL = 'http://www.msn.com'; // TODO
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('Chat');
+     entry.URL = 'http://www.msn.com'; // TODO
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('messenger::root');
+     entry.URL = 'true'; // If value is set, then messenger is enabled. If value is null or service doesn't exist, then messenger is disabled.
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('search::search');
+     entry.URL = 'http://sg2.msntv.msn.com/search/Search.aspx';
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('search::main');
+     entry.URL = 'http://sg2.msntv.msn.com/search/Search.aspx'; // Is this correct?
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('discuss::home');
+     entry.URL = 'http://www.msn.com'; // TODO
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('maps::main');
+     entry.URL = 'http://www.msn.com'; // TODO
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('Settings::HomeNetwork');
+     entry.URL = 'msntv:/Settings/Network/HomeNetworking.html'; // Is this correct?
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('settings::mainindex');
+     entry.URL = 'http://www.msn.com'; // TODO
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('UAM::UAMbase');
+     entry.URL = 'https://sg2.trusted.msntv.msn.com/apps/uam/pages/settings.aspx';
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('Music::Home');
+     entry.URL = 'http://www.msn.com'; // TODO
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('Video::Home');
+     entry.URL = 'http://www.msn.com'; // TODO
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('Photo::Home');
+     entry.URL = 'msntv:/Photo/PhotoHome.html'; // TODO
+     //entry.KeyCode = VK_F12;
+     entry.Safe = true;
+     entry = tvShell.UserManager.CurrentUser.ServiceList.Add('Photos');
+     entry.URL = 'msntv:/Photo/PhotoHome.html'; // TODO
+     entry.Safe = true;
+     
+     // ServiceList - I guess for services that the box will have to contact even if offline
+     /*entry = tvShell.ServiceList.Add('home::cinemanow');
+     entry.URL = 'http://g.msn.com/5TVANDURIL/4000';
+     entry = tvShell.ServiceList.Add('msn::radioplus');
+     entry.URL = 'http://radio.msn.com/asx/generate.aspx';
+     entry = tvShell.ServiceList.Add('msn::musicnews');
+     entry.URL = 'http://www.msnbc.msn.com/id/3032433/';
+     entry = tvShell.ServiceList.Add('connection::popupcontrol');
+     entry.URL = 'https://sg3.trusted.msntv.msn.com/connection/PopupControlWhiteList.ashx';
+     entry = tvShell.ServiceList.Add('connection::reconnect');
+     entry.URL = 'https://sg3.trusted.msntv.msn.com/connection/GatePage.aspx?phase=Bootstrap&purpose=ReAuthorize';
+     entry = tvShell.ServiceList.Add('connection::nightly_login');
+     entry.URL = 'https://sg3.trusted.msntv.msn.com/connection/GatePage.aspx?phase=Bootstrap&purpose=Nightly';
+     entry = tvShell.ServiceList.Add('mail::check');
+     entry.URL = 'https://sg3.trusted.msntv.msn.com/apps/connection/CheckMail.aspx?phase=CheckMail&purpose=CheckMail';
+     entry.Safe = true;
+     entry = tvShell.ServiceList.Add('home::videoplus');
+     entry.URL = 'http://msntv.msn.com/pages/msnvideo/main.aspx';
+     entry.Safe = true;
+     entry = tvShell.ServiceList.Add('home::musicvideo');
+     entry.URL = 'http://msntv.msn.com/pages/msnvideo/main.aspx?p=music';
+     entry.Safe = true;
+     entry = tvShell.ServiceList.Add('connection::resetpassword');
+     entry.URL = 'https://sg3.trusted.msntv.msn.com/connection/GatePage.aspx?phase=Bootstrap&purpose=ResetPassword';
+     entry = tvShell.ServiceList.Add('connection::pagepatch');
+     entry.URL = 'https://sg3.trusted.msntv.msn.com/connection/PagePatch.ashx';
+     entry = tvShell.ServiceList.Add('connection::login');
+     entry.URL = 'https://sg3.trusted.msntv.msn.com/connection/GatePage.aspx?phase=Bootstrap&purpose=Authorize';
+     entry.Description = 'prod/sg3 [3.2.634.29]'; // give login service a description of the server it is hosted from
+     entry = tvShell.ServiceList.Add('ctags::main');
+     entry.URL = 'http://c.msn.com/c.gif?di=1455&pi=68206&tp=http%3a%2f%2fmsntv.msn.com%2fclient%2f';*/
+ }
+ var progressPanel = tvShell.PanelManager.Item('progress');
+ function SetProgress(text, percent) {
+     if (progressPanel) {
+         progressPanel.Document.SetProgressText(text);
+         progressPanel.Document.SetProgressPercent(percent);
+     }
+ }
+ function IsServicePanel() {
+     if ((window.name == null) || ((window.name != null) && (window.name.toLowerCase() != 'service'))) {
+         return(false);
+     }
+     return(true);
+ }
+ function DontContinue() {
+     var currentUser = tvShell.UserManager.CurrentUser;
+     if (currentUser != null && currentUser.IsAuthorized) {
+         window.location.replace(tvShell.UserManager.CurrentUser.ServiceList.Item('home::home').URL);
+     }
+     else {
+         tvShell.ConnectionManager.ServiceState = 'ReSignIn'; // Is this appropriate?
+     }
+ }
+ if (!IsServicePanel()) {
+     DontContinue();
+ }
+ else {
+     SetServiceList();
+     SetProgress('thrash/sg1 [1.5.336.20] Please wait while we sign you into MSN TV.', 100); // TODO: Does the progress bar message change?
+     tvShell.ConnectionManager.ServiceState = 'Authorized';
+     window.location.replace(tvShell.UserManager.CurrentUser.ServiceList.Item('home::home').URL);
+ }
+   </script>
+  </body>
+ </HTML>
