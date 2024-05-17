@@ -2,29 +2,48 @@
 # By yourlocaltoaster (https://github.com/yourlocaltoaster0)
 
 #TODO:
-# Figure out how to validate BoxId's [Not Done]
 # Figure out what to send back to the MSN TV 2 box. [Done] (Thanks to @msntv2 on discord) 
-# Add HTTPS? [Not Done]
 # TO DO last updated: 05/12/2024 @ 10:12
 
 
 from flask import Flask, Response, render_template
+import threading
 
-app = Flask(__name__)
+bootstrap = Flask(__name__)
+service = Flask(__name__)
 
-# /boxcheck and /usercheck will be handled by DNS to point to the right configuration.
-@app.route('/')
+# /boxcheck and /usercheck will be handled by dns to point to the right ip.
+@bootstrap.route('/')
 def returnBootstrap():
-     return render_template("/service/bootstrap.html")
+     return render_template("bootstrap.html")
 
-@app.route('/boxcheck')
-def returnBoxCheck():
-     return render_template("/service/boxcheck_mock.html")      
+@service.route('/')
+def returnNilIfNoHTML():
+    return Response("No HTML file in path.")
 
-@app.route('/usercheck')
-def returnUserCheck():
-     return render_template("/service/usercheck_mock.html")                                          
+@service.route('/connection/boxcheck_mock.html')
+def returnboxcheck():
+    return render_template("boxcheck_mock.html")
+
+@service.route('/connection/usercheck_mock.html')
+def returnusercheck():
+    return render_template("usercheck_mock.html")
+
+@service.route('/connection/kickstart.aspx')
+def returnkickstart():
+    return render_template('kickstart.aspx')
+
+@service.route('/connection/GatePage.aspx')
+def gobacktokickstartnow():
+    return render_template("kickstart.aspx")
+
+def run_flask(app, port):
+    app.run(host=0.0.0.0', port=port)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80, debug=False)
-    
+    bootstrapThread = threading.Thread(target=run_flask, args=(bootstrap, 80))
+    serviceThread = threading.Thread(target=run_flask, args=(service, 8082))
+    bootstrapThread.start()
+    serviceThread.start()
+    bootstrapThread.join()
+    serviceThread.join()
