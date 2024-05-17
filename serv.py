@@ -6,7 +6,7 @@
 # TO DO last updated: 05/12/2024 @ 10:12
 
 
-from flask import Flask, Response, render_template
+from flask import Flask, Response, render_template, request
 import threading
 
 bootstrap = Flask(__name__)
@@ -33,12 +33,15 @@ def returnusercheck():
 def returnkickstart():
     return render_template('kickstart.aspx')
 
-@service.route('/connection/GatePage.aspx')
-def gobacktokickstartnow():
-    return render_template("kickstart.aspx")
+@service.route('/connection/GatePage.aspx', methods=['GET'])
+def gate_page():
+    if request.args.get('phase') == 'Bootstrap' and request.args.get('purpose') == 'Authorize':
+        return render_template('/connection/GatePage.aspx')
+    else:
+        pass
 
 def run_flask(app, port):
-    app.run(host=0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port)
 
 if __name__ == '__main__':
     bootstrapThread = threading.Thread(target=run_flask, args=(bootstrap, 80))
@@ -47,3 +50,4 @@ if __name__ == '__main__':
     serviceThread.start()
     bootstrapThread.join()
     serviceThread.join()
+    
