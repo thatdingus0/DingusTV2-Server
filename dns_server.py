@@ -38,13 +38,13 @@ class DNSLogger(dnslib.server.BaseResolver):
             print("Returned server IP - bootstrap")
             return reply
         
-        elif qname in ["ieatsand.localip"]:
-            print(f"Matched {qname}")
-            reply = request.reply()
-            reply.add_answer(dnslib.RR(qname, dnslib.QTYPE.A, rdata=dnslib.A("10.0.0.185")))
-            reply.add_answer(dnslib.RR(qname, dnslib.QTYPE.TXT, rdata=dnslib.TXT("3000")))
-            print("Returned server IP - lmao")
-            return reply
+        #elif qname in ["ieatsand.localip"]: This was used for debug
+            #print(f"Matched {qname}")
+            #reply = request.reply()
+            #reply.add_answer(dnslib.RR(qname, dnslib.QTYPE.A, rdata=dnslib.A("10.0.0.185")))
+            #reply.add_answer(dnslib.RR(qname, dnslib.QTYPE.TXT, rdata=dnslib.TXT("3000")))
+            #print("Returned server IP - lmao")
+            #return reply
 
         else:
             print(f"No match for {qname}")
