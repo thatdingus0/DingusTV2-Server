@@ -5,7 +5,6 @@ import logging
 app = Flask(__name__)
 
 # Configure logging
-logging.basicConfig(level=logging.DEBUG)
 
 home_directory = os.path.join(os.getcwd(), 'Home')  # Updated directory name
 home_directory2 = os.path.join(os.getcwd(), 'Home2')  # Updated directory name
