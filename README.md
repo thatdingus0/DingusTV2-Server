@@ -5,37 +5,6 @@ A almost functioning MSNTV 2 server.
 ## How to run
 You need python3, Flask, nginx, USB Drive, and this github repo.
 
-## USB Configuration (FOR VERSION 4.3 OR BELOW)
-This server isn't a drop-in replacement since the MSN TV 2 requires https to login. 
-
-1. Get a USB Drive formatted in FAT32 
-2. Download evalAuto.html and place on your USB 
-3. Plug in your usb drive into your MSN TV 2 
-4. Open Settings > Choose connection settings > Configure Router 
-5. Enter a IP that isn't being used on your network (ex: 192.168.1.274) 
-6. Wait for the request to time out 
-7. Now enter: msntv://../hard disk/evalAuto.html 
-
-If you see a screen with the text "Configuration Updated" you can click the back button on your keyboard until you reach the login screen \
-Now you're ready to connect \
-!* NOTE THIS ONLY AFFECT THE CURRENT SESSION, WHEN YOU REBOOT YOU NEED TO DO THIS AGAIN (only steps 4 to 7) *!
-
-## USB Configuration (FOR ANY OTHER VERSION)
-This server isn't a drop-in replacement since the MSN TV 2 requires https to login. 
-
-1. Get a USB Drive formatted in FAT32
-2. Download configServer.py
-3. Run the python script
-4. Download evalAuto.html and place on your USB 
-5. Plug in your usb drive into your MSN TV 2 
-6. Open Settings > Choose connection settings > Configure Router
-7. Input your computers IP address
-
-If you see a screen with the text "Configuration Updated" you can click the back button on your keyboard until you reach the login screen \
-Now you're ready to connect
-
-!* NOTE THIS ONLY AFFECT THE CURRENT SESSION, WHEN YOU REBOOT YOU NEED TO DO THIS AGAIN (only steps 3 to 7) *!
-
 ## Installing required packages
 ### Linux
 Open a terminal
@@ -123,6 +92,45 @@ server_names_hash_bucket_size 64;  # Increase this value
 ```
 Make sure to change 192.168.1.58 to your server ip.
 
+## USB Configuration (FOR VERSION 4.3 OR BELOW)
+This server isn't a drop-in replacement since the MSN TV 2 requires https to login. 
+
+1. Get a USB Drive formatted in FAT32 
+2. Download evalAuto.html and place on your USB 
+3. Plug in your usb drive into your MSN TV 2 
+4. Open Settings > Choose connection settings > Configure Router 
+5. Enter a IP that isn't being used on your network (ex: 192.168.1.274) 
+6. Wait for the request to time out 
+7. Now enter: msntv://../hard disk/evalAuto.html 
+
+If you see a screen with the text "Configuration Updated" you can click the back button on your keyboard until you reach the login screen \
+Now you're ready to connect \
+!* NOTE THIS ONLY AFFECT THE CURRENT SESSION, WHEN YOU REBOOT YOU NEED TO DO THIS AGAIN (only steps 4 to 7) *!
+
+## USB Configuration (FOR ANY OTHER VERSION)
+This server isn't a drop-in replacement since the MSN TV 2 requires https to login. 
+
+1. Get a USB Drive formatted in FAT32
+2. Download configServer.py
+3. Run the python script
+4. Download evalAuto.html and place on your USB 
+5. Plug in your usb drive into your MSN TV 2 
+6. Open Settings > Choose connection settings > Configure Router
+7. Input your computers IP address
+
+If you see a screen with the text "Configuration Updated" you can click the back button on your keyboard until you reach the login screen \
+Now you're ready to connect
+
+!* NOTE THIS ONLY AFFECT THE CURRENT SESSION, WHEN YOU REBOOT YOU NEED TO DO THIS AGAIN (only steps 3 to 7) *!
+
+
+## Running the server
+Make sure that the python files and the web.zip file is in the same location.
+1. Unzip the web.zip (make sure it doesn't create another folder)
+2. Run home_serv.py and service_serv.py
+3. Test it out \
+Any issues? Check out the Q/A
+
 ## MSN TV 2 Configuration (Local Server)
 First make sure do to the USB Configuration \
 
@@ -150,3 +158,9 @@ This is a required step because there is no way that the MSN TV 2 box will use h
 ### Is there any hacked image I need to flash?
 No, this server uses nginx and USB configuration to bypass HTTPS \
 If you have a working HTTPS patch that doesn't require this, Contact me at slost1010s@gmail.com
+
+### How can I check my MSN TV 2 version?
+While the system is powered off (not unplugged) press alt three times and enter 411 \
+Now turn on your box. \
+Find the version, it will look like something like this: \
+<img src="https://camo.githubusercontent.com/6b3d6d35ed5ffc5aa0b6eed3dd5e2fcd64101e054517e2ae7a15fc5d24f67f10/68747470733a2f2f692e696d6775722e636f6d2f7a674263486e632e706e67" alt="MSN TV 2 with software version shown">
