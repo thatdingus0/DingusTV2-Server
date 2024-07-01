@@ -111,8 +111,8 @@ Now you're ready to connect \
 This server isn't a drop-in replacement since the MSN TV 2 requires https to login. 
 
 1. Get a USB Drive formatted in FAT32
-2. Download configServer.py
-3. Run the python script
+2. Download index.html in the "USBCONFIG" folder
+3. Run `python -m http.server 80` in the USBCONFIG folder
 4. Download evalAuto.html and place on your USB 
 5. Plug in your usb drive into your MSN TV 2 
 6. Open Settings > Choose connection settings > Configure Router
