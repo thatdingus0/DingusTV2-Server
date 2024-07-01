@@ -132,7 +132,7 @@ Make sure that the python files and the web.zip file is in the same location.
 Any issues? Check out the Q/A
 
 ## MSN TV 2 Configuration (Local Server)
-First make sure do to the USB Configuration \
+First make sure do to the USB Configuration 
 
 1. Open Settings > Choose connection settings > Use proxy servers
 2. Find the input "Web Proxy"
@@ -143,8 +143,16 @@ First make sure do to the USB Configuration \
 Done!
 
 ## MSN TV 2 Configuration (Global Server)
-Coming soon!
+First make sure do to the USB Configuration 
 
+1. Open Settings > Choose connection settings > Use proxy servers
+2. Find the input "Web Proxy"
+3. Input 172.234.28.223 and port 5050
+4. Click done
+5. Go back to the login screen
+6. And now connect
+Done!
+<img src="https://camo.githubusercontent.com/db30c1596558c8939c89d220e000fcf92148e89adff235a6798a394aa2a876bf/68747470733a2f2f692e696d6775722e636f6d2f6a6d77665671522e706e67" alt="MSN TV 2 with connection screen with proxy entered">
 
 ## Q/A
 ### My box isn't connecting (Local/Global)
